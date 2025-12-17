@@ -181,15 +181,3 @@ Flask Framework
 
 FFmpeg
 
-If you want, I can now provide:
-
-Project Report (DOC/PDF)
-
-PPT for Viva
-
-Resume-ready project description
-
-Viva questions and answers
-
-Just tell me what you need next.
-
