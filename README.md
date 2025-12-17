@@ -1,129 +1,195 @@
-# Grammar Scoring Engine
+Grammar Scoring Engine from Voice Samples
+Project Overview
 
-A Python package for automated grammar assessment of audio recordings.
+The Grammar Scoring Engine from Voice Samples is an AI-based web application that evaluates the grammatical correctness of spoken English. The system takes voice input from users, converts it into text using automatic speech recognition, analyzes grammatical errors using natural language processing techniques, and generates a grammar score along with corrective feedback.
 
-## 🚀 Installation
+This project is suitable for final-year engineering projects, internships, and educational demonstrations.
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/yourusername/grammar-scoring-engine.git
-   cd grammar-scoring-engine
-   ```
-2. Make Environment
-   ```bash
-   python3 -m venv venv
-   source venv/bin/activate
-   ```
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
+Objectives
 
-3. Run the installation script:
-   ```bash
-   python install.py
-   ```
+Convert spoken English into text
 
-## 📦 Usage
+Identify grammatical errors in spoken sentences
 
-### Basic Usage
+Generate a grammar score based on detected errors
 
-```python
-from grammar_scoring.main import complete_grammar_scoring_workflow
+Provide corrective suggestions for improvement
 
-# Example 1: Process a single audio file
-result = complete_grammar_scoring_workflow(
-    audio_file="path/to/your/audio.wav",
-    use_whisper=True  # Set to True for better transcription quality
-)
+Build a user-friendly web interface for audio upload
 
-# Example 2: Process a directory of audio files
-results_df = complete_grammar_scoring_workflow(
-    dataset_name="path/to/your/audio/directory",
-    use_whisper=False  # Set to True for better but slower transcription
-)
+System Architecture
+Voice Input (.wav)
+        |
+Speech-to-Text (Whisper ASR)
+        |
+Grammar Analysis (LanguageTool NLP)
+        |
+Scoring Logic
+        |
+Grammar Score and Feedback
 
-# Print some results
-if results_df is not None:
-    print(f"Average Grammar Score: {results_df['grammar_score'].mean():.2f}/100")
-```
+Technology Stack
+Component	Technology
+Programming Language	Python 3.10
+Web Framework	Flask
+Speech Recognition	OpenAI Whisper
+Grammar Checking	LanguageTool
+Audio Processing	FFmpeg
+Frontend	HTML, JavaScript
+Backend	Flask REST API
+Operating System	Windows
+Project Structure
+grammar_scoring_engine/
+│
+├── app.py
+├── record_audio.py (optional)
+├── requirements.txt
+├── README.md
+│
+├── templates/
+│   └── index.html
+│
+├── uploads/
+│   └── input.wav
 
-## 📊 Results
+Installation and Setup
+Step 1: Clone or Download the Project
+git clone <repository-url>
+cd grammar_scoring_engine
 
-The Grammar Scoring Engine provides detailed analysis including:
+Step 2: Create Virtual Environment (Optional but Recommended)
+python -m venv venv
+venv\Scripts\activate
 
-1. **Audio Waveform Visualization**
-   
-   ![Audio Waveform Analysis](result/photo1.jpeg)
+Step 3: Install Required Libraries
+pip install -r requirements.txt
 
-2. **Grammar Analysis Report**
-   
-   ![Grammar Analysis Results](result/photo2.jpeg)
+Step 4: Install FFmpeg
 
-The system provides:
-- Accurate audio transcription
-- Grammar score (0-100)
-- Error detection and counting
-- Detailed grammar error explanations
-- Position-specific error highlighting
+Download FFmpeg from:
+https://www.gyan.dev/ffmpeg/builds/
 
-In the example above, the system:
-- Achieved a 97.44/100 grammar score
-- Detected 1 grammar error
-- Provided specific feedback about singular/plural agreement
-- Generated a clear waveform visualization of the audio input
+Extract and move the folder to:
 
-## 🔧 Features
+C:\ffmpeg
 
-- **Audio Processing**
-  - Support for multiple audio formats (.wav, .mp3, etc.)
-  - Real-time audio recording c apability
-  - Waveform visualization
-  - Batch processing of audio files
 
-- **Transcription Options**
-  - OpenAI Whisper integration for high-accuracy transcription
-  - Fallback to default transcription engine
-  - Multi-language support
+Ensure the following file exists:
 
-- **Grammar Analysis**
-  - Detailed error detection and classification
-  - Context-aware grammar checking
-  - Position-specific error highlighting
-  - Comprehensive scoring system (0-100)
+C:\ffmpeg\bin\ffmpeg.exe
 
-- **Reporting**
-  - Visual analytics and graphs
-  - Detailed error explanations
-  - Progress tracking for batch processing
-  - Export capabilities for analysis results
 
-## 📋 Requirements
+Note: FFmpeg path is injected at runtime inside app.py.
 
-- Python 3.7+
-- FFmpeg (for audio processing)
-- Required Python packages:
-  - whisper
-  - pandas
-  - numpy
-  - matplotlib
-  - sounddevice
-  - soundfile
-  - tqdm
+How to Run the Project
+python app.py
 
-## 🤝 Contributing
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+Open a browser and navigate to:
 
-## 📝 License
+http://127.0.0.1:5000
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 📬 Contact
+Upload a .wav audio file and click Analyze.
 
-For questions and support, please open an issue in the GitHub repository.
+Sample Output
+{
+  "spoken_text": "I am go to college yesterday",
+  "grammar_score": 6,
+  "error_count": 2,
+  "errors": [
+    {
+      "message": "Incorrect verb tense",
+      "suggestions": ["went"]
+    }
+  ]
+}
+
+Grammar Scoring Method
+
+Maximum score: 10
+
+Each grammatical error reduces the score
+
+Formula:
+
+Grammar Score = 10 − (Number of Errors × 2)
+
+Use Cases
+
+Spoken English learning applications
+
+Interview practice systems
+
+Language proficiency assessment tools
+
+Voice-based educational platforms
+
+AI-powered learning assistants
+
+Advantages
+
+Fully automated grammar evaluation
+
+Works with real voice input
+
+CPU-based execution (no GPU required)
+
+Easy to extend with additional scoring metrics
+
+Future Enhancements
+
+Fluency and pronunciation scoring
+
+CEFR level classification (A1–C1)
+
+Text-to-speech feedback
+
+Android mobile application
+
+Multilingual support
+
+Academic Relevance
+
+This project demonstrates concepts from:
+
+Artificial Intelligence
+
+Natural Language Processing
+
+Speech Recognition
+
+Web Application Development
+
+Human Computer Interaction
+
+Project Category
+
+Artificial Intelligence / Machine Learning / NLP
+
+License
+
+This project is developed for educational and academic purposes.
+
+Acknowledgements
+
+OpenAI Whisper
+
+LanguageTool
+
+Flask Framework
+
+FFmpeg
+
+If you want, I can now provide:
+
+Project Report (DOC/PDF)
+
+PPT for Viva
+
+Resume-ready project description
+
+Viva questions and answers
+
+Just tell me what you need next.
 
