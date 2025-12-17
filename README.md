@@ -142,9 +142,4 @@ This project is licensed under the MIT License.
 - LanguageTool: https://languagetool.org/  
 - Flask: https://flask.palletsprojects.com/
 
----
 
-## Contact
-
-For any questions or support, please contact:  
-**Your Name** — your.email@example.com
