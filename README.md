@@ -1,183 +1,150 @@
-Grammar Scoring Engine from Voice Samples
-Project Overview
 
-The Grammar Scoring Engine from Voice Samples is an AI-based web application that evaluates the grammatical correctness of spoken English. The system takes voice input from users, converts it into text using automatic speech recognition, analyzes grammatical errors using natural language processing techniques, and generates a grammar score along with corrective feedback.
+# Grammar Scoring Engine from Voice Samples
 
-This project is suitable for final-year engineering projects, internships, and educational demonstrations.
+## Overview
 
-Objectives
+This project is a web application that analyzes spoken English audio and provides a grammar score based on the transcribed text.  
+It uses:
 
-Convert spoken English into text
+- **OpenAI Whisper** for automatic speech recognition (ASR)  
+- **LanguageTool** for grammar checking  
+- **Flask** as the web framework  
 
-Identify grammatical errors in spoken sentences
+Users upload audio files, and the app returns the spoken text, grammar errors, and a simple grammar score.
 
-Generate a grammar score based on detected errors
+---
 
-Provide corrective suggestions for improvement
+## Features
 
-Build a user-friendly web interface for audio upload
+- Upload voice samples (`.wav` format) via the web interface  
+- Speech-to-text transcription with Whisper  
+- Grammar checking using LanguageTool  
+- Detailed grammar error messages with suggestions  
+- Grammar score calculation (score out of 10)  
 
-System Architecture
-Voice Input (.wav)
-        |
-Speech-to-Text (Whisper ASR)
-        |
-Grammar Analysis (LanguageTool NLP)
-        |
-Scoring Logic
-        |
-Grammar Score and Feedback
+---
 
-Technology Stack
-Component	Technology
-Programming Language	Python 3.10
-Web Framework	Flask
-Speech Recognition	OpenAI Whisper
-Grammar Checking	LanguageTool
-Audio Processing	FFmpeg
-Frontend	HTML, JavaScript
-Backend	Flask REST API
-Operating System	Windows
-Project Structure
-grammar_scoring_engine/
-│
-├── app.py
-├── record_audio.py (optional)
-├── requirements.txt
-├── README.md
-│
-├── templates/
-│   └── index.html
-│
-├── uploads/
-│   └── input.wav
+## Requirements
 
-Installation and Setup
-Step 1: Clone or Download the Project
-git clone <repository-url>
-cd grammar_scoring_engine
+- Python 3.7+  
+- FFmpeg installed and added to system PATH (required by Whisper)  
+- Required Python packages (listed in `requirements.txt`)  
 
-Step 2: Create Virtual Environment (Optional but Recommended)
+---
+
+## Installation & Setup
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/your-username/grammar-scoring-engine.git
+cd grammar-scoring-engine
+```
+
+### 2. Create and activate a virtual environment (recommended)
+
+```bash
 python -m venv venv
+# Windows
 venv\Scripts\activate
+# macOS/Linux
+source venv/bin/activate
+```
 
-Step 3: Install Required Libraries
+### 3. Install dependencies
+
+```bash
 pip install -r requirements.txt
+```
 
-Step 4: Install FFmpeg
+### 4. Install FFmpeg
 
-Download FFmpeg from:
-https://www.gyan.dev/ffmpeg/builds/
+- Download FFmpeg from [https://ffmpeg.org/download.html](https://ffmpeg.org/download.html)  
+- Add FFmpeg `bin` folder to your system PATH environment variable  
+- Verify installation with:
 
-Extract and move the folder to:
+```bash
+ffmpeg -version
+```
 
-C:\ffmpeg
+---
 
+## Running the Application Locally
 
-Ensure the following file exists:
-
-C:\ffmpeg\bin\ffmpeg.exe
-
-
-Note: FFmpeg path is injected at runtime inside app.py.
-
-How to Run the Project
+```bash
 python app.py
+```
 
+Open your browser at:  
+[http://127.0.0.1:5000](http://127.0.0.1:5000)
 
-Open a browser and navigate to:
+---
 
-http://127.0.0.1:5000
+## Using the Application
 
+1. Click **Choose File** and upload a `.wav` audio file with spoken English  
+2. Submit the form  
+3. View the transcribed text, grammar score, and detailed grammar errors  
 
-Upload a .wav audio file and click Analyze.
+---
 
-Sample Output
-{
-  "spoken_text": "I am go to college yesterday",
-  "grammar_score": 6,
-  "error_count": 2,
-  "errors": [
-    {
-      "message": "Incorrect verb tense",
-      "suggestions": ["went"]
-    }
-  ]
-}
+## Deployment
 
-Grammar Scoring Method
+You can deploy this Flask app with Whisper and LanguageTool to the cloud.
 
-Maximum score: 10
+### Recommended Hosting: [Render.com](https://render.com)
 
-Each grammatical error reduces the score
+1. Push your code to GitHub  
+2. Create a new web service on Render linked to your repo  
+3. Set build command: `pip install -r requirements.txt`  
+4. Set start command: `gunicorn app:app`  
+5. Deploy and get your live URL  
 
-Formula:
+**Note:** Ensure FFmpeg is available on the server (Render supports it by default).
 
-Grammar Score = 10 − (Number of Errors × 2)
+---
 
-Use Cases
+## Limitations
 
-Spoken English learning applications
+- Microphone input directly from browser is NOT supported  
+- Long audio files may cause timeouts  
+- Running on free-tier cloud plans may have resource limits  
 
-Interview practice systems
+---
 
-Language proficiency assessment tools
+## Troubleshooting
 
-Voice-based educational platforms
+- If you see errors about missing FFmpeg, verify it is installed and in PATH  
+- If `language_tool_python` gives errors, ensure Java Runtime Environment (JRE) is installed  
+- Use short audio clips for faster processing  
 
-AI-powered learning assistants
+---
 
-Advantages
+## Dependencies
 
-Fully automated grammar evaluation
+- Flask  
+- OpenAI Whisper (`whisper` Python package)  
+- LanguageTool Python wrapper (`language_tool_python`)  
+- PyTorch (required by Whisper)  
+- FFmpeg (external system dependency)  
 
-Works with real voice input
+---
 
-CPU-based execution (no GPU required)
+## License
 
-Easy to extend with additional scoring metrics
+This project is licensed under the MIT License.
 
-Future Enhancements
+---
 
-Fluency and pronunciation scoring
+## Acknowledgements
 
-CEFR level classification (A1–C1)
+- OpenAI Whisper: https://github.com/openai/whisper  
+- LanguageTool: https://languagetool.org/  
+- Flask: https://flask.palletsprojects.com/
 
-Text-to-speech feedback
+---
 
-Android mobile application
+## Contact
 
-Multilingual support
-
-Academic Relevance
-
-This project demonstrates concepts from:
-
-Artificial Intelligence
-
-Natural Language Processing
-
-Speech Recognition
-
-Web Application Development
-
-Human Computer Interaction
-
-Project Category
-
-Artificial Intelligence / Machine Learning / NLP
-
-License
-
-This project is developed for educational and academic purposes.
-
-Acknowledgements
-
-OpenAI Whisper
-
-LanguageTool
-
-Flask Framework
-
-FFmpeg
-
+For any questions or support, please contact:  
+**Your Name** — your.email@example.com
